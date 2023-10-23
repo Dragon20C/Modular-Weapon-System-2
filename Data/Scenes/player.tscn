@@ -1,0 +1,169 @@
+[gd_scene load_steps=15 format=3 uid="uid://dgmyh7wn4vr5s"]
+
+[ext_resource type="Script" path="res://Data/Scripts/player.gd" id="1_uf465"]
+[ext_resource type="Script" path="res://Data/Scripts/Motion.gd" id="2_7p1od"]
+[ext_resource type="Script" path="res://Data/Modular Item System 2/Item_Manager.gd" id="2_de6ly"]
+[ext_resource type="AudioStream" uid="uid://bswq5ifcck45k" path="res://Data/Audio/Footsteps/Stone/step_1.wav" id="3_blg80"]
+[ext_resource type="AudioStream" uid="uid://c44cfvjtv8lpv" path="res://Data/Audio/Footsteps/Stone/step_2.wav" id="4_axn5d"]
+[ext_resource type="AudioStream" uid="uid://bfmtp3yrkrawm" path="res://Data/Audio/Footsteps/Stone/step_3.wav" id="5_x37x2"]
+[ext_resource type="Resource" uid="uid://dhw814vpbfuw1" path="res://Data/Item and Weapons Scenes/AK47.tres" id="7_edr86"]
+[ext_resource type="Resource" uid="uid://vlt2tr740t10" path="res://Data/Item and Weapons Scenes/1911.tres" id="8_sdgmg"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_0b3bm"]
+
+[sub_resource type="Animation" id="Animation_s44nk"]
+resource_name = "Equip"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Offset/View:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, -0.5, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Offset/View:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_vbyl2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Offset/View:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Offset/View:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_fduds"]
+resource_name = "Unequip"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Offset/View:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -0.5, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Offset/View:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_no8is"]
+_data = {
+"Equip": SubResource("Animation_s44nk"),
+"RESET": SubResource("Animation_vbyl2"),
+"Unequip": SubResource("Animation_fduds")
+}
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vkl1l"]
+
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("Head", "CameraSocket")]
+script = ExtResource("1_uf465")
+Head = NodePath("Head")
+CameraSocket = NodePath("Head/CameraSocket")
+
+[node name="Body" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+visible = false
+mesh = SubResource("CapsuleMesh_0b3bm")
+
+[node name="Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="CameraSocket" type="Node3D" parent="Head"]
+
+[node name="Camera3D" type="Camera3D" parent="Head/CameraSocket"]
+
+[node name="Offset" type="Node3D" parent="Head/CameraSocket/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, -0.1, -0.2)
+
+[node name="View" type="Node3D" parent="Head/CameraSocket/Camera3D/Offset"]
+
+[node name="Animator" type="AnimationPlayer" parent="Head/CameraSocket/Camera3D"]
+libraries = {
+"": SubResource("AnimationLibrary_no8is")
+}
+
+[node name="Raycaster" type="RayCast3D" parent="Head/CameraSocket/Camera3D"]
+target_position = Vector3(0, 0, -15)
+
+[node name="WeaponAudioPlayer" type="AudioStreamPlayer3D" parent="Head/CameraSocket/Camera3D"]
+max_polyphony = 4
+
+[node name="Marker3D" type="Marker3D" parent="Head/CameraSocket"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_vkl1l")
+
+[node name="MotionNode" type="Node" parent="." node_paths=PackedStringArray("Camera", "Marker", "Player", "feet_audio_player")]
+script = ExtResource("2_7p1od")
+Camera = NodePath("../Head/CameraSocket/Camera3D")
+Marker = NodePath("../Head/CameraSocket/Marker3D")
+Player = NodePath("..")
+feet_audio_player = NodePath("../FeetAudioEmitter")
+footstep_sounds = Array[AudioStreamWAV]([ExtResource("3_blg80"), ExtResource("4_axn5d"), ExtResource("5_x37x2")])
+
+[node name="FeetAudioEmitter" type="AudioStreamPlayer3D" parent="."]
+
+[node name="WeaponManager" type="Node" parent="." node_paths=PackedStringArray("View_Node", "View_Animator", "Audio_Emitter", "Raycaster", "Weapon_Timer")]
+script = ExtResource("2_de6ly")
+View_Node = NodePath("../Head/CameraSocket/Camera3D/Offset/View")
+View_Animator = NodePath("../Head/CameraSocket/Camera3D/Animator")
+Audio_Emitter = NodePath("../Head/CameraSocket/Camera3D/WeaponAudioPlayer")
+Item_Data = {
+"Ak_47": ExtResource("7_edr86"),
+"M1911": ExtResource("8_sdgmg")
+}
+Raycaster = NodePath("../Head/CameraSocket/Camera3D/Raycaster")
+Weapon_Timer = NodePath("../WeaponTimer")
+
+[node name="WeaponTimer" type="Timer" parent="."]
+one_shot = true
