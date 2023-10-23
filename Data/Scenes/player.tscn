@@ -134,7 +134,7 @@ libraries = {
 target_position = Vector3(0, 0, -15)
 
 [node name="WeaponAudioPlayer" type="AudioStreamPlayer3D" parent="Head/CameraSocket/Camera3D"]
-max_polyphony = 4
+max_polyphony = 6
 
 [node name="Marker3D" type="Marker3D" parent="Head/CameraSocket"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15)

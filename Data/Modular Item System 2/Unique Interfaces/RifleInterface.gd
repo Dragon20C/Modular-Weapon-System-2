@@ -57,7 +57,8 @@ func Fire():
 		#raycaster.force_raycast_update()
 
 func PlayFireSound():
-	AudioPlayer.stream = Data.Audio["Fire"]
+	if AudioPlayer.stream != Data.Audio["Fire"]:
+		AudioPlayer.stream = Data.Audio["Fire"]
 	AudioPlayer.play()
 
 func Reload():
