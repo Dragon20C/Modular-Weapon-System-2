@@ -121,7 +121,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 [node name="Camera3D" type="Camera3D" parent="Head/CameraSocket"]
 
 [node name="Offset" type="Node3D" parent="Head/CameraSocket/Camera3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, -0.1, -0.2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12, -0.1, -0.2)
 
 [node name="View" type="Node3D" parent="Head/CameraSocket/Camera3D/Offset"]
 
@@ -143,13 +143,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_vkl1l")
 
-[node name="MotionNode" type="Node" parent="." node_paths=PackedStringArray("Camera", "Marker", "Player", "feet_audio_player")]
+[node name="MotionNode" type="Node" parent="." node_paths=PackedStringArray("Camera", "Marker", "Player", "feet_audio_player", "ViewModel")]
 script = ExtResource("2_7p1od")
 Camera = NodePath("../Head/CameraSocket/Camera3D")
 Marker = NodePath("../Head/CameraSocket/Marker3D")
 Player = NodePath("..")
 feet_audio_player = NodePath("../FeetAudioEmitter")
 footstep_sounds = Array[AudioStreamWAV]([ExtResource("3_blg80"), ExtResource("4_axn5d"), ExtResource("5_x37x2")])
+ViewModel = NodePath("../Head/CameraSocket/Camera3D/Offset/View")
 
 [node name="FeetAudioEmitter" type="AudioStreamPlayer3D" parent="."]
 
