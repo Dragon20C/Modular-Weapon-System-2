@@ -2,7 +2,7 @@ class_name RifleInterface extends ActionInterface
 
 var Fire_Timer : Timer
 var Raycaster : RayCast3D
-
+var Bullet_Scene : PackedScene
 var Fire_Rate : float
 var Current_Magazine : int
 
@@ -14,7 +14,9 @@ func _init(_Data : BaseItem, _Manager : Item_Manager):
 
 func Connect_Nodes():
 	print("Gun Interface Connected")
-	Raycaster = Manager.Raycaster
+	Raycaster = Manager.View_Node.get_child(0).get_child(0).get_node("Ray")
+	Bullet_Scene = Manager.Bullet_Instace
+	print(Raycaster)
 	Fire_Timer = Manager.Weapon_Timer
 	Fire_Rate = 1.0 / (Data.RPM / 60.0)
 	Fire_Timer.wait_time = Fire_Rate
@@ -48,6 +50,7 @@ func Action_4():
 
 func Fire():
 	if Current_Magazine > 0:
+		Instance_Bullet()
 		PlayFireSound()
 		Current_Magazine -= 1
 		Fire_Timer.start()
@@ -75,3 +78,9 @@ func Reload():
 func replenish_ammo():
 	print("reload finished!")
 	Current_Magazine = Data.Ammo_Capacity
+
+func Instance_Bullet():
+	var instance = Bullet_Scene.instantiate()
+	instance.position = Raycaster.global_position
+	instance.transform.basis = Raycaster.global_transform.basis
+	Manager.get_parent().get_parent().add_child(instance)

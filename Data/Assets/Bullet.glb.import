@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://crep4d8iqgsk4"
-path="res://.godot/imported/AK47.glb-7f28900cf985cf02ae26d70d274a8302.scn"
+uid="uid://c40w7xldsuvdl"
+path="res://.godot/imported/Bullet.glb-4b8f149d9d8120cba9689998d3994797.scn"
 
 [deps]
 
-source_file="res://Data/Assets/Items_Weapons/AK47.glb"
-dest_files=["res://.godot/imported/AK47.glb-7f28900cf985cf02ae26d70d274a8302.scn"]
+source_file="res://Data/Assets/Bullet.glb"
+dest_files=["res://.godot/imported/Bullet.glb-4b8f149d9d8120cba9689998d3994797.scn"]
 
 [params]
 

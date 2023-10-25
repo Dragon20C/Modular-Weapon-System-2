@@ -8,6 +8,7 @@ class_name Item_Manager extends Node
 @export_group("Extras")
 @export var Raycaster : RayCast3D
 @export var Weapon_Timer : Timer
+@onready var Bullet_Instace : PackedScene = preload("res://Data/Scenes/bullet.tscn")
 
 var System : Item_System
 

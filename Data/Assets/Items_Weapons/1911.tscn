@@ -1,4 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://d117ka6e1j0ve"]
+[gd_scene load_steps=12 format=3 uid="uid://d117ka6e1j0ve"]
+
+[ext_resource type="PackedScene" uid="uid://coxpx5i6ox7fr" path="res://BulletEjection.tscn" id="1_qs8jf"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0f85x"]
 resource_name = "Black"
@@ -127,6 +129,32 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector3(1.5708, -3.14159, 0), Vector3(1.5708, -3.14159, 0)]
 }
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("1911/BulletEjection")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"restart"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("1911/BulletEjection:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_be4g1"]
 length = 0.001
@@ -153,6 +181,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(1.5708, -3.14159, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("1911/BulletEjection:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_44rk6"]
@@ -194,13 +234,24 @@ transform = Transform3D(-1, 0, 8.9407e-08, 0, 1, 0, -8.9407e-08, 0, -1, 0, 0, -0
 
 [node name="1911" type="MeshInstance3D" parent="."]
 transform = Transform3D(-7.6385e-05, -5.09407e-10, 1.84405e-15, 0, -7.27383e-10, -0.000200935, 1.9365e-10, -0.000200935, 7.27383e-10, 0, 0, 0)
+cast_shadow = 0
 mesh = SubResource("ArrayMesh_r47cq")
 skeleton = NodePath("")
 
 [node name="1911_Mag" type="MeshInstance3D" parent="1911"]
 transform = Transform3D(1, 7.10543e-15, 7.10543e-15, 1.77636e-15, 1, -2.11758e-22, 1.77636e-15, -2.11758e-22, 1, -7.60854e-05, 338.948, 322.751)
+cast_shadow = 0
 mesh = SubResource("ArrayMesh_byroj")
 skeleton = NodePath("")
+
+[node name="BulletEjection" parent="1911" instance=ExtResource("1_qs8jf")]
+transform = Transform3D(-13091.6, -7.54351e-14, 0.0331895, -0.0126169, -0.0180157, -4976.73, 4.56732e-08, -4976.73, 0.0180157, 0, -0.000305176, -84.8823)
+one_shot = true
+local_coords = true
+
+[node name="Ray" type="RayCast3D" parent="1911"]
+transform = Transform3D(-13091.6, 0, 0.0331895, -0.0126169, -0.0180157, -4976.73, 4.56731e-08, -4976.73, 0.0180157, 0.00331895, -497.674, -113.812)
+target_position = Vector3(0, 0, 1)
 
 [node name="Animations" type="AnimationPlayer" parent="."]
 libraries = {

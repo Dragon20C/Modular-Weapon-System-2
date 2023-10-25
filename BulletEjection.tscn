@@ -13,5 +13,6 @@ initial_velocity_max = 2.0
 [node name="BulletEjection" type="GPUParticles3D"]
 amount = 1
 fixed_fps = 60
+local_coords = true
 process_material = SubResource("ParticleProcessMaterial_7pqtc")
 draw_pass_1 = ExtResource("1_mjxvf")
