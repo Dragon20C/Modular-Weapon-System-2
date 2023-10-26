@@ -6,6 +6,9 @@ var Bullet_Scene : PackedScene
 var Fire_Rate : float
 var Current_Magazine : int
 
+enum ADS_States {Into,Out,ADS,Idle}
+var ADS_State = ADS_States.Idle
+var Aiming : bool = false
 
 func _init(_Data : BaseItem, _Manager : Item_Manager):
 	Data = _Data
@@ -44,6 +47,31 @@ func Action_2():
 
 func Action_3():
 	if Busy: return
+	
+	if Input.is_action_pressed("right_click"):
+		Aiming = true
+	else:
+		Aiming = false
+		
+	match  ADS_State:
+		ADS_States.Into:
+			Manager.View_Animator.play("Aim")
+			await Manager.View_Animator.animation_finished
+			ADS_State = ADS_States.ADS
+		ADS_States.Out:
+			Manager.View_Animator.play_backwards("Aim")
+			await Manager.View_Animator.animation_finished
+			ADS_State = ADS_States.Idle
+		ADS_States.ADS:
+			if !Aiming:
+				ADS_State = ADS_States.Out
+		ADS_States.Idle:
+			if Aiming:
+				ADS_State = ADS_States.Into
+				
+	
+	
+	
 
 func Action_4():
 	if Busy: return
@@ -57,7 +85,6 @@ func Fire():
 		Animator.seek(0)
 		Animator.play("Fire")
 		print(Current_Magazine)
-		#raycaster.force_raycast_update()
 
 func PlayFireSound():
 	if AudioPlayer.stream != Data.Audio["Fire"]:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dgmyh7wn4vr5s"]
+[gd_scene load_steps=17 format=3 uid="uid://dgmyh7wn4vr5s"]
 
 [ext_resource type="Script" path="res://Data/Scripts/player.gd" id="1_uf465"]
 [ext_resource type="Script" path="res://Data/Scripts/Motion.gd" id="2_7p1od"]
@@ -11,13 +11,29 @@
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_0b3bm"]
 
+[sub_resource type="Animation" id="Animation_wvrxy"]
+resource_name = "Aim"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Offset/ViewBob/View:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.12, 0.05, 0.085)]
+}
+
 [sub_resource type="Animation" id="Animation_s44nk"]
 resource_name = "Equip"
 length = 0.8
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Offset/View:position")
+tracks/0/path = NodePath("Offset/ViewBob/View:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -29,7 +45,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Offset/View:rotation")
+tracks/1/path = NodePath("Offset/ViewBob/View:rotation")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -44,7 +60,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Offset/View:position")
+tracks/0/path = NodePath("Offset/ViewBob/View:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -56,7 +72,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Offset/View:rotation")
+tracks/1/path = NodePath("Offset/ViewBob/View:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -72,7 +88,7 @@ length = 0.8
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Offset/View:position")
+tracks/0/path = NodePath("Offset/ViewBob/View:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -84,7 +100,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Offset/View:rotation")
+tracks/1/path = NodePath("Offset/ViewBob/View:rotation")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -94,11 +110,29 @@ tracks/1/keys = {
 "values": [Vector3(0, 0, 0), Vector3(0, 0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_tng1q"]
+resource_name = "aimed"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Offset/ViewBob/View:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.12, 0.05, 0.085), Vector3(-0.12, 0.05, 0.085)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_no8is"]
 _data = {
+"Aim": SubResource("Animation_wvrxy"),
 "Equip": SubResource("Animation_s44nk"),
 "RESET": SubResource("Animation_vbyl2"),
-"Unequip": SubResource("Animation_fduds")
+"Unequip": SubResource("Animation_fduds"),
+"aimed": SubResource("Animation_tng1q")
 }
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vkl1l"]
@@ -119,11 +153,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 [node name="CameraSocket" type="Node3D" parent="Head"]
 
 [node name="Camera3D" type="Camera3D" parent="Head/CameraSocket"]
+near = 0.001
 
 [node name="Offset" type="Node3D" parent="Head/CameraSocket/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12, -0.1, -0.2)
 
-[node name="View" type="Node3D" parent="Head/CameraSocket/Camera3D/Offset"]
+[node name="ViewBob" type="Node3D" parent="Head/CameraSocket/Camera3D/Offset"]
+
+[node name="View" type="Node3D" parent="Head/CameraSocket/Camera3D/Offset/ViewBob"]
 
 [node name="Animator" type="AnimationPlayer" parent="Head/CameraSocket/Camera3D"]
 libraries = {
@@ -150,13 +187,13 @@ Marker = NodePath("../Head/CameraSocket/Marker3D")
 Player = NodePath("..")
 feet_audio_player = NodePath("../FeetAudioEmitter")
 footstep_sounds = Array[AudioStreamWAV]([ExtResource("3_blg80"), ExtResource("4_axn5d"), ExtResource("5_x37x2")])
-ViewModel = NodePath("../Head/CameraSocket/Camera3D/Offset/View")
+ViewModel = NodePath("../Head/CameraSocket/Camera3D/Offset/ViewBob")
 
 [node name="FeetAudioEmitter" type="AudioStreamPlayer3D" parent="."]
 
 [node name="WeaponManager" type="Node" parent="." node_paths=PackedStringArray("View_Node", "View_Animator", "Audio_Emitter", "Raycaster", "Weapon_Timer")]
 script = ExtResource("2_de6ly")
-View_Node = NodePath("../Head/CameraSocket/Camera3D/Offset/View")
+View_Node = NodePath("../Head/CameraSocket/Camera3D/Offset/ViewBob/View")
 View_Animator = NodePath("../Head/CameraSocket/Camera3D/Animator")
 Audio_Emitter = NodePath("../Head/CameraSocket/Camera3D/WeaponAudioPlayer")
 Item_Data = {
