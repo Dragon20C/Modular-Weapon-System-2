@@ -247,7 +247,6 @@ skeleton = NodePath("")
 [node name="BulletEjection" parent="1911" instance=ExtResource("1_qs8jf")]
 transform = Transform3D(-13091.6, -7.54351e-14, 0.0331895, -0.0126169, -0.0180157, -4976.73, 4.56732e-08, -4976.73, 0.0180157, 0, -0.000305176, -84.8823)
 one_shot = true
-local_coords = true
 
 [node name="Ray" type="RayCast3D" parent="1911"]
 transform = Transform3D(-13091.6, 0, 0.0331895, -0.0126169, -0.0180157, -4976.73, 4.56731e-08, -4976.73, 0.0180157, 0.00331895, -497.674, -113.812)

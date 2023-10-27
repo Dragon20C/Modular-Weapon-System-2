@@ -25,7 +25,9 @@ func setup():
 	# Add ActionInterfaces here and we should add it to the system
 	var ak47 = RifleInterface.new(Item_Data.get("Ak_47"),self)
 	var M1911 = RifleInterface.new(Item_Data.get("M1911"),self)
+	var P90 = RifleInterface.new(Item_Data.get("P90"),self)
 	
+	System.Add_Item(P90)
 	System.Add_Item(ak47)
 	System.Add_Item(M1911)
 

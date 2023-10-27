@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dgmyh7wn4vr5s"]
+[gd_scene load_steps=18 format=3 uid="uid://dgmyh7wn4vr5s"]
 
 [ext_resource type="Script" path="res://Data/Scripts/player.gd" id="1_uf465"]
 [ext_resource type="Script" path="res://Data/Scripts/Motion.gd" id="2_7p1od"]
@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://bfmtp3yrkrawm" path="res://Data/Audio/Footsteps/Stone/step_3.wav" id="5_x37x2"]
 [ext_resource type="Resource" uid="uid://dhw814vpbfuw1" path="res://Data/Item and Weapons Scenes/AK47.tres" id="7_edr86"]
 [ext_resource type="Resource" uid="uid://vlt2tr740t10" path="res://Data/Item and Weapons Scenes/1911.tres" id="8_sdgmg"]
+[ext_resource type="Resource" uid="uid://byw51rsnui55h" path="res://Data/Item and Weapons Scenes/P90.tres" id="9_2767s"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_0b3bm"]
 
@@ -198,7 +199,8 @@ View_Animator = NodePath("../Head/CameraSocket/Camera3D/Animator")
 Audio_Emitter = NodePath("../Head/CameraSocket/Camera3D/WeaponAudioPlayer")
 Item_Data = {
 "Ak_47": ExtResource("7_edr86"),
-"M1911": ExtResource("8_sdgmg")
+"M1911": ExtResource("8_sdgmg"),
+"P90": ExtResource("9_2767s")
 }
 Raycaster = NodePath("../Head/CameraSocket/Camera3D/Raycaster")
 Weapon_Timer = NodePath("../WeaponTimer")
