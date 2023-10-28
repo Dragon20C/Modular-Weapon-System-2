@@ -33,6 +33,8 @@ func Remove_Item():
 func start():
 	if Items.size() > 0:
 		Switch_Item(Items[Current_Index])
+	else:
+		State = States.Disabled
 
 func SwitchInput(event):
 	if event.is_action_pressed("scroll_up") and State == States.Running:
@@ -64,6 +66,8 @@ func Update():
 			pass
 	
 func Switch_Item(Item : ActionInterface):
+	if Item == null : return
+	
 	if Current_Item == Item : return
 	State = States.Disabled
 	
@@ -80,8 +84,9 @@ func Switch_Item(Item : ActionInterface):
 
 func Instance_Item_Scene(Item : PackedScene):
 	var Scene = Item.instantiate()
-	# Hand node is the visual node for the models.
 	view_model.add_child(Scene)
-	# Set the animationplayer from the scene to the current weapon.
-	#current_weapon.animator = instantiated_scene.get_node("Animations")
-	#current_weapon.sound_position = instantiated_scene.get_node("SoundPosition")
+	
+func Check():
+	if Items.size() > 0:
+		Current_Index = min(Current_Index+1,Items.size()-1)
+		Switch_Item(Items[Current_Index])

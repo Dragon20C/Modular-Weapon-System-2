@@ -6,7 +6,6 @@ class_name Item_Manager extends Node
 @export var Audio_Emitter : AudioStreamPlayer3D
 @export var Item_Data : Dictionary
 @export_group("Extras")
-@export var Raycaster : RayCast3D
 @export var Weapon_Timer : Timer
 @onready var Bullet_Instace : PackedScene = preload("res://Data/Scenes/bullet.tscn")
 
@@ -17,6 +16,7 @@ func _input(event):
 
 
 func _ready():
+	LinkStation.Weapon_Manager = self
 	System = Item_System.new(View_Node, View_Animator)
 	setup()
 	System.start()
@@ -27,9 +27,9 @@ func setup():
 	var M1911 = RifleInterface.new(Item_Data.get("M1911"),self)
 	var P90 = RifleInterface.new(Item_Data.get("P90"),self)
 	
-	System.Add_Item(P90)
-	System.Add_Item(ak47)
-	System.Add_Item(M1911)
+	#System.Add_Item(P90)
+	#System.Add_Item(ak47)
+	#System.Add_Item(M1911)
 
 # Input should be handled outside of the system since functions like phyisc/process
 # no longer work when setup like this

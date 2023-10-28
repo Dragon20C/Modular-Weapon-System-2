@@ -1,6 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://b4d6twqxg5t50"]
+[gd_scene load_steps=15 format=3 uid="uid://b4d6twqxg5t50"]
 
 [ext_resource type="PackedScene" uid="uid://dgmyh7wn4vr5s" path="res://Data/Scenes/player.tscn" id="1_81ddj"]
+[ext_resource type="Material" uid="uid://c26ior17i248v" path="res://Data/Scenes/MaterialPurple.tres" id="2_omuow"]
+[ext_resource type="PackedScene" uid="uid://b7fr1com4xm7x" path="res://Data/Scenes/table.tscn" id="2_r65bb"]
+[ext_resource type="PackedScene" uid="uid://0ou2ydwalgvr" path="res://Data/Weapon Pickups/P90_rigid.tscn" id="4_1h6da"]
+[ext_resource type="PackedScene" uid="uid://xgadqwk0icok" path="res://Data/Weapon Pickups/ak_47_rigid.tscn" id="5_sg68y"]
+[ext_resource type="PackedScene" uid="uid://bi1qucdfrp22u" path="res://Data/Weapon Pickups/M1911_rigid.tscn" id="6_pghlv"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ehoi3"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -30,11 +35,8 @@ size = Vector3(30, 0.1, 30)
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_fx07v"]
 data = PackedVector3Array(-15, 0.05, 15, 15, 0.05, 15, -15, -0.05, 15, 15, 0.05, 15, 15, -0.05, 15, -15, -0.05, 15, 15, 0.05, -15, -15, 0.05, -15, 15, -0.05, -15, -15, 0.05, -15, -15, -0.05, -15, 15, -0.05, -15, 15, 0.05, 15, 15, 0.05, -15, 15, -0.05, 15, 15, 0.05, -15, 15, -0.05, -15, 15, -0.05, 15, -15, 0.05, -15, -15, 0.05, 15, -15, -0.05, -15, -15, 0.05, 15, -15, -0.05, 15, -15, -0.05, -15, 15, 0.05, 15, -15, 0.05, 15, 15, 0.05, -15, -15, 0.05, 15, -15, 0.05, -15, 15, 0.05, -15, -15, -0.05, 15, 15, -0.05, 15, -15, -0.05, -15, 15, -0.05, 15, 15, -0.05, -15, -15, -0.05, -15)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ew10g"]
-albedo_color = Color(0.776471, 0.796078, 0.92549, 1)
-
 [sub_resource type="BoxMesh" id="BoxMesh_71wwr"]
-material = SubResource("StandardMaterial3D_ew10g")
+material = ExtResource("2_omuow")
 size = Vector3(2, 2, 2)
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_tirqu"]
@@ -53,15 +55,21 @@ shadow_opacity = 0.7
 shadow_blur = 0.0
 sky_mode = 1
 
-[node name="Ground" type="MeshInstance3D" parent="."]
+[node name="Player" parent="." instance=ExtResource("1_81ddj")]
+
+[node name="Environment" type="Node" parent="."]
+
+[node name="Ground" type="MeshInstance3D" parent="Environment"]
 mesh = SubResource("BoxMesh_n184j")
+skeleton = NodePath("../..")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Ground"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Environment/Ground"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Ground/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_fx07v")
 
-[node name="Player" parent="." instance=ExtResource("1_81ddj")]
+[node name="Table" parent="Environment" instance=ExtResource("2_r65bb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7)
 
 [node name="FloatingCubesGroup" type="Node" parent="."]
 
@@ -76,7 +84,7 @@ skeleton = NodePath("../..")
 shape = SubResource("ConcavePolygonShape3D_tirqu")
 
 [node name="FloatingCubes2" type="MeshInstance3D" parent="FloatingCubesGroup"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 3, -10)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 6, -10)
 mesh = SubResource("BoxMesh_71wwr")
 skeleton = NodePath("../..")
 
@@ -144,3 +152,14 @@ skeleton = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="FloatingCubesGroup/FloatingCubes8/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_tirqu")
+
+[node name="Weapons" type="Node" parent="."]
+
+[node name="P90_RIGID" parent="Weapons" instance=ExtResource("4_1h6da")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 2.05404, -6.34463)
+
+[node name="AK47_RIGID" parent="Weapons" instance=ExtResource("5_sg68y")]
+transform = Transform3D(-4.37114e-08, 0, -1, 1, -4.37114e-08, -4.37114e-08, -4.37114e-08, -1, 1.91069e-15, -1, 1.50413, -6.30406)
+
+[node name="M1911_RIGID" parent="Weapons" instance=ExtResource("6_pghlv")]
+transform = Transform3D(-4.37114e-08, 0, -1, 1, -4.37114e-08, -4.37114e-08, -4.37114e-08, -1, 1.91069e-15, 1, 1.5651, -6.28015)

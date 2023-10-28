@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dgmyh7wn4vr5s"]
+[gd_scene load_steps=19 format=3 uid="uid://dgmyh7wn4vr5s"]
 
 [ext_resource type="Script" path="res://Data/Scripts/player.gd" id="1_uf465"]
 [ext_resource type="Script" path="res://Data/Scripts/Motion.gd" id="2_7p1od"]
@@ -9,6 +9,7 @@
 [ext_resource type="Resource" uid="uid://dhw814vpbfuw1" path="res://Data/Weapon Resources/AK47.tres" id="7_37y6y"]
 [ext_resource type="Resource" uid="uid://vlt2tr740t10" path="res://Data/Weapon Resources/1911.tres" id="8_npq8o"]
 [ext_resource type="Resource" uid="uid://byw51rsnui55h" path="res://Data/Weapon Resources/P90.tres" id="9_hn5bj"]
+[ext_resource type="Script" path="res://Data/Scripts/InteractionManager.gd" id="10_mgfpd"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_0b3bm"]
 
@@ -156,6 +157,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 [node name="Camera3D" type="Camera3D" parent="Head/CameraSocket"]
 near = 0.001
 
+[node name="Raycaster" type="RayCast3D" parent="Head/CameraSocket/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
+target_position = Vector3(0, 0, -15)
+
 [node name="Offset" type="Node3D" parent="Head/CameraSocket/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12, -0.1, -0.2)
 
@@ -167,9 +172,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12, -0.1, -0.2)
 libraries = {
 "": SubResource("AnimationLibrary_no8is")
 }
-
-[node name="Raycaster" type="RayCast3D" parent="Head/CameraSocket/Camera3D"]
-target_position = Vector3(0, 0, -15)
 
 [node name="WeaponAudioPlayer" type="AudioStreamPlayer3D" parent="Head/CameraSocket/Camera3D"]
 max_polyphony = 6
@@ -192,7 +194,7 @@ ViewModel = NodePath("../Head/CameraSocket/Camera3D/Offset/ViewBob")
 
 [node name="FeetAudioEmitter" type="AudioStreamPlayer3D" parent="."]
 
-[node name="WeaponManager" type="Node" parent="." node_paths=PackedStringArray("View_Node", "View_Animator", "Audio_Emitter", "Raycaster", "Weapon_Timer")]
+[node name="WeaponManager" type="Node" parent="." node_paths=PackedStringArray("View_Node", "View_Animator", "Audio_Emitter", "Weapon_Timer")]
 script = ExtResource("2_de6ly")
 View_Node = NodePath("../Head/CameraSocket/Camera3D/Offset/ViewBob/View")
 View_Animator = NodePath("../Head/CameraSocket/Camera3D/Animator")
@@ -202,8 +204,11 @@ Item_Data = {
 "M1911": ExtResource("8_npq8o"),
 "P90": ExtResource("9_hn5bj")
 }
-Raycaster = NodePath("../Head/CameraSocket/Camera3D/Raycaster")
 Weapon_Timer = NodePath("../WeaponTimer")
 
 [node name="WeaponTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="InteractionManager" type="Node" parent="." node_paths=PackedStringArray("Raycast")]
+script = ExtResource("10_mgfpd")
+Raycast = NodePath("../Head/CameraSocket/Camera3D/Raycaster")
