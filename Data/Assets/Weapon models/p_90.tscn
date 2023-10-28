@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://ds11m5cwvaqdo"]
 
-[ext_resource type="PackedScene" uid="uid://coxpx5i6ox7fr" path="res://BulletEjection.tscn" id="1_wy16u"]
+[ext_resource type="PackedScene" uid="uid://coxpx5i6ox7fr" path="res://Data/Scenes/BulletEjection.tscn" id="1_wy16u"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m1g3t"]
 resource_name = "DarkGray"
@@ -262,7 +262,6 @@ mesh = SubResource("ArrayMesh_qlaug")
 skeleton = NodePath("")
 
 [node name="P90_Mag" type="MeshInstance3D" parent="P90"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("ArrayMesh_631ri")
 skeleton = NodePath("")
 

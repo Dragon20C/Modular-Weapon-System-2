@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="RifleItem" load_steps=4 format=3 uid="uid://vlt2tr740t10"]
 
-[ext_resource type="AudioStream" uid="uid://ba3cpd0qbesw6" path="res://Data/Audio/Gun Sounds/762x54r Single.wav" id="1_c6fyi"]
 [ext_resource type="Script" path="res://Data/Modular Item System 2/Base Class/RifleItem.gd" id="1_plf8h"]
+[ext_resource type="AudioStream" uid="uid://kioifdji2j28" path="res://Data/Audio/Gun Sounds/9mm Single.wav" id="1_yvj4g"]
 [ext_resource type="PackedScene" uid="uid://cjdcvgqfiqig4" path="res://Data/Assets/Weapon models/m_1911.tscn" id="2_ed6pp"]
 
 [resource]
@@ -14,5 +14,5 @@ Reload_Speed = 1.0
 Name = "1911"
 Scene = ExtResource("2_ed6pp")
 Audio = {
-"Fire": ExtResource("1_c6fyi")
+"Fire": ExtResource("1_yvj4g")
 }

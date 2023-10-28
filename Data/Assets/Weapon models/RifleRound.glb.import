@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://bw42pnop2dmj2"
-path="res://.godot/imported/RifleRound.glb-eb435ae59cfea976a6e7a973bc80fc2a.scn"
+path="res://.godot/imported/RifleRound.glb-a1c4aab4d414410ea6828495a308d474.scn"
 
 [deps]
 
-source_file="res://Data/Assets/Items_Weapons/RifleRound.glb"
-dest_files=["res://.godot/imported/RifleRound.glb-eb435ae59cfea976a6e7a973bc80fc2a.scn"]
+source_file="res://Data/Assets/Weapon models/RifleRound.glb"
+dest_files=["res://.godot/imported/RifleRound.glb-a1c4aab4d414410ea6828495a308d474.scn"]
 
 [params]
 

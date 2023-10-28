@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="RifleItem" load_steps=4 format=3 uid="uid://byw51rsnui55h"]
 
-[ext_resource type="AudioStream" uid="uid://ba3cpd0qbesw6" path="res://Data/Audio/Gun Sounds/762x54r Single.wav" id="1_etc5y"]
 [ext_resource type="Script" path="res://Data/Modular Item System 2/Base Class/RifleItem.gd" id="1_xdw3y"]
+[ext_resource type="AudioStream" uid="uid://kioifdji2j28" path="res://Data/Audio/Gun Sounds/9mm Single.wav" id="1_xib3i"]
 [ext_resource type="PackedScene" uid="uid://ds11m5cwvaqdo" path="res://Data/Assets/Weapon models/p_90.tscn" id="2_5ta4y"]
 
 [resource]
@@ -9,10 +9,10 @@ script = ExtResource("1_xdw3y")
 action_type = 1
 Ammo_Capacity = 50
 Magazine_Max = 100
-RPM = 550.0
+RPM = 800.0
 Reload_Speed = 1.0
 Name = "P90"
 Scene = ExtResource("2_5ta4y")
 Audio = {
-"Fire": ExtResource("1_etc5y")
+"Fire": ExtResource("1_xib3i")
 }

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://coxpx5i6ox7fr"]
 
-[ext_resource type="ArrayMesh" uid="uid://dxj8a8ufgl1v6" path="res://Data/Assets/Items_Weapons/rifle_round.tres" id="1_mjxvf"]
+[ext_resource type="ArrayMesh" uid="uid://dxj8a8ufgl1v6" path="res://Data/Assets/Weapon models/rifle_round.tres" id="1_mjxvf"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7pqtc"]
 direction = Vector3(-100, 100, 0)

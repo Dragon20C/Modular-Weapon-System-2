@@ -6,9 +6,9 @@
 [ext_resource type="AudioStream" uid="uid://bswq5ifcck45k" path="res://Data/Audio/Footsteps/Stone/step_1.wav" id="3_blg80"]
 [ext_resource type="AudioStream" uid="uid://c44cfvjtv8lpv" path="res://Data/Audio/Footsteps/Stone/step_2.wav" id="4_axn5d"]
 [ext_resource type="AudioStream" uid="uid://bfmtp3yrkrawm" path="res://Data/Audio/Footsteps/Stone/step_3.wav" id="5_x37x2"]
-[ext_resource type="Resource" uid="uid://dhw814vpbfuw1" path="res://Data/Item and Weapons Scenes/AK47.tres" id="7_edr86"]
-[ext_resource type="Resource" uid="uid://vlt2tr740t10" path="res://Data/Item and Weapons Scenes/1911.tres" id="8_sdgmg"]
-[ext_resource type="Resource" uid="uid://byw51rsnui55h" path="res://Data/Item and Weapons Scenes/P90.tres" id="9_2767s"]
+[ext_resource type="Resource" uid="uid://dhw814vpbfuw1" path="res://Data/Weapon Resources/AK47.tres" id="7_37y6y"]
+[ext_resource type="Resource" uid="uid://vlt2tr740t10" path="res://Data/Weapon Resources/1911.tres" id="8_npq8o"]
+[ext_resource type="Resource" uid="uid://byw51rsnui55h" path="res://Data/Weapon Resources/P90.tres" id="9_hn5bj"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_0b3bm"]
 
@@ -198,9 +198,9 @@ View_Node = NodePath("../Head/CameraSocket/Camera3D/Offset/ViewBob/View")
 View_Animator = NodePath("../Head/CameraSocket/Camera3D/Animator")
 Audio_Emitter = NodePath("../Head/CameraSocket/Camera3D/WeaponAudioPlayer")
 Item_Data = {
-"Ak_47": ExtResource("7_edr86"),
-"M1911": ExtResource("8_sdgmg"),
-"P90": ExtResource("9_2767s")
+"Ak_47": ExtResource("7_37y6y"),
+"M1911": ExtResource("8_npq8o"),
+"P90": ExtResource("9_hn5bj")
 }
 Raycaster = NodePath("../Head/CameraSocket/Camera3D/Raycaster")
 Weapon_Timer = NodePath("../WeaponTimer")

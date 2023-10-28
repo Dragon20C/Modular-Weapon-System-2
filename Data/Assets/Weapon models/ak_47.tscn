@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://olaovm6rtgef"]
 
-[ext_resource type="PackedScene" uid="uid://coxpx5i6ox7fr" path="res://BulletEjection.tscn" id="1_yp1pk"]
+[ext_resource type="PackedScene" uid="uid://coxpx5i6ox7fr" path="res://Data/Scenes/BulletEjection.tscn" id="1_yp1pk"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_34n3s"]
 resource_name = "Orange"

@@ -110,4 +110,5 @@ func Instance_Bullet():
 	var instance = Bullet_Scene.instantiate()
 	instance.position = Raycaster.global_position
 	instance.transform.basis = Raycaster.global_transform.basis
-	Manager.get_parent().get_parent().add_child(instance)
+	Manager.get_tree().get_root().add_child(instance)
+	#Manager.get_parent().get_parent().add_child(instance)
