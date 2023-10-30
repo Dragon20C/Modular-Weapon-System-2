@@ -17,7 +17,7 @@ func _init(_Data : BaseItem, _Manager : Item_Manager):
 
 # Functions for entering and exiting the interface.
 # example witching weapons we want to play the animation for it.
-func On_init():
+func Connect_Nodes():
 	print("Action Interface initialized")
 
 # These functions is used to add input for the specific action

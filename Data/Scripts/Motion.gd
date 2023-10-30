@@ -49,7 +49,7 @@ func ViewMotion() -> Vector3:
 func Motion() -> Vector3:
 	var Pos = Vector3.ZERO
 	Pos.y += sin(time * Frequency) * Amplitude
-	Pos.x += cos(time * Frequency / 2) * Amplitude * 2
+	Pos.x += cos(time * Frequency / 2) * Amplitude
 	
 	CanPlayFootStep(Pos.y)
 	

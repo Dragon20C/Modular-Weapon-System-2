@@ -1,15 +1,6 @@
 class_name Item_System extends Node
 
-# View model and vie animator would be replaced with your hand socket and animaton player
-# I currently have it like this because I cant model lol
 
-
-# Hold the states for the manager
-# enter to play the equip animation and set values
-# exit to play the unequip animations and to do any cleanup
-# Running means actions can be played
-# Disabled to stop actions from playing
-# Hidden we have put our item/weapon away or no item exists
 enum States {Connect,Exit,Disabled,Running,Hidden}
 var State = States.Hidden
 

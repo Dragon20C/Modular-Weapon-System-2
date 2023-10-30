@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dgmyh7wn4vr5s"]
+[gd_scene load_steps=20 format=3 uid="uid://dgmyh7wn4vr5s"]
 
 [ext_resource type="Script" path="res://Data/Scripts/player.gd" id="1_uf465"]
 [ext_resource type="Script" path="res://Data/Scripts/Motion.gd" id="2_7p1od"]
@@ -10,6 +10,7 @@
 [ext_resource type="Resource" uid="uid://vlt2tr740t10" path="res://Data/Weapon Resources/1911.tres" id="8_npq8o"]
 [ext_resource type="Resource" uid="uid://byw51rsnui55h" path="res://Data/Weapon Resources/P90.tres" id="9_hn5bj"]
 [ext_resource type="Script" path="res://Data/Scripts/InteractionManager.gd" id="10_mgfpd"]
+[ext_resource type="PackedScene" uid="uid://bbyyjap0bb5ji" path="res://Data/Scenes/ui.tscn" id="11_lf5ri"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_0b3bm"]
 
@@ -167,8 +168,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12, -0.1, -0.2)
 [node name="ViewBob" type="Node3D" parent="Head/CameraSocket/Camera3D/Offset"]
 
 [node name="View" type="Node3D" parent="Head/CameraSocket/Camera3D/Offset/ViewBob"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 
 [node name="Animator" type="AnimationPlayer" parent="Head/CameraSocket/Camera3D"]
+reset_on_save = false
 libraries = {
 "": SubResource("AnimationLibrary_no8is")
 }
@@ -212,3 +215,5 @@ one_shot = true
 [node name="InteractionManager" type="Node" parent="." node_paths=PackedStringArray("Raycast")]
 script = ExtResource("10_mgfpd")
 Raycast = NodePath("../Head/CameraSocket/Camera3D/Raycaster")
+
+[node name="UI" parent="." instance=ExtResource("11_lf5ri")]
