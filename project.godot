@@ -18,7 +18,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-LinkStation="*res://Data/Scripts/LinkStation.gd"
+LinkStation="*res://Data/Singleton/LinkStation.gd"
 
 [display]
 

@@ -1,11 +1,11 @@
 [gd_scene load_steps=15 format=3 uid="uid://b4d6twqxg5t50"]
 
-[ext_resource type="PackedScene" uid="uid://dgmyh7wn4vr5s" path="res://Data/Scenes/player.tscn" id="1_81ddj"]
+[ext_resource type="PackedScene" uid="uid://dgmyh7wn4vr5s" path="res://Data/Player/player.tscn" id="1_81ddj"]
 [ext_resource type="Material" uid="uid://c26ior17i248v" path="res://Data/Scenes/MaterialPurple.tres" id="2_omuow"]
 [ext_resource type="PackedScene" uid="uid://b7fr1com4xm7x" path="res://Data/Scenes/table.tscn" id="2_r65bb"]
-[ext_resource type="PackedScene" uid="uid://0ou2ydwalgvr" path="res://Data/Weapon Pickups/P90_rigid.tscn" id="4_1h6da"]
-[ext_resource type="PackedScene" uid="uid://xgadqwk0icok" path="res://Data/Weapon Pickups/ak_47_rigid.tscn" id="5_sg68y"]
-[ext_resource type="PackedScene" uid="uid://bi1qucdfrp22u" path="res://Data/Weapon Pickups/M1911_rigid.tscn" id="6_pghlv"]
+[ext_resource type="PackedScene" uid="uid://0ou2ydwalgvr" path="res://Data/ObjectData/Weapon Pickups/P90_rigid.tscn" id="4_1h6da"]
+[ext_resource type="PackedScene" uid="uid://xgadqwk0icok" path="res://Data/ObjectData/Weapon Pickups/ak_47_rigid.tscn" id="5_sg68y"]
+[ext_resource type="PackedScene" uid="uid://bi1qucdfrp22u" path="res://Data/ObjectData/Weapon Pickups/M1911_rigid.tscn" id="6_pghlv"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ehoi3"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)

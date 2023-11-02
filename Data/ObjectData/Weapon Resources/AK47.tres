@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="RifleObject" load_steps=4 format=3 uid="uid://dhw814vpbfuw1"]
+
+[ext_resource type="AudioStream" uid="uid://c0cg3lvdrciqd" path="res://Data/Assets/Audio/Gun Sounds/762x39 Single.wav" id="1_w23di"]
+[ext_resource type="PackedScene" uid="uid://olaovm6rtgef" path="res://Data/Assets/Weapon models/ak_47.tscn" id="2_h0ihv"]
+[ext_resource type="Script" path="res://Data/System/Weapon System/Interfaces + Data/GunData.gd" id="3_5vsbw"]
+
+[resource]
+script = ExtResource("3_5vsbw")
+action_type = 1
+Ammo_Capacity = 30
+Magazine_Max = 100
+RPM = 600.0
+Reload_Speed = 1.0
+Name = "AK-47"
+Scene = ExtResource("2_h0ihv")
+Audio = {
+"Fire": ExtResource("1_w23di")
+}
