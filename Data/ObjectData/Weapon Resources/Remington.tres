@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="GunObject" load_steps=4 format=3 uid="uid://lfyl0a1siq2b"]
+
+[ext_resource type="AudioStream" uid="uid://bcfbowinpn5m2" path="res://Data/Assets/Audio/Gun Sounds/20 Gauge Single.wav" id="1_0ugl5"]
+[ext_resource type="Script" path="res://Data/System/Weapon System/Interfaces + Data/GunData.gd" id="1_i4k5c"]
+[ext_resource type="PackedScene" uid="uid://cu681673xokhm" path="res://Data/Assets/Weapon models/remington_shotgun.tscn" id="1_yac05"]
+
+[resource]
+script = ExtResource("1_i4k5c")
+action_type = "Shotgun"
+Shotgun_Spread = 2.0
+Ammo_Capacity = 32
+Magazine_Max = 8
+RPM = 100.0
+Reload_Speed = 1.0
+Name = "Remington"
+Scene = ExtResource("1_yac05")
+Audio = {
+"Fire": ExtResource("1_0ugl5")
+}

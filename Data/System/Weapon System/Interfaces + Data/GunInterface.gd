@@ -14,7 +14,7 @@ var Aiming : bool = false
 func _init(_Data : ObjectData, _Manager : WeaponManager):
 	Data = _Data
 	Manager = _Manager
-	Current_Magazine = Data.Ammo_Capacity
+	Current_Magazine = Data.Magazine_Max
 
 func Connect_Nodes():
 	print("Gun Interface Connected")
@@ -32,13 +32,15 @@ func Connect_Nodes():
 func Action_1():
 	if Busy: return
 	
-	if Data.action_type == 1:
+	if Data.action_type == "Automatic":
 		if Input.is_action_pressed("left_click") and Fire_Timer.is_stopped():
 			Fire()
-	elif  Data.action_type == 2:
+	elif  Data.action_type == "Semi-automatic":
 		if Input.is_action_just_pressed("left_click") and Fire_Timer.is_stopped():
 			Fire()
-
+	elif Data.action_type == "Shotgun":
+		if Input.is_action_just_pressed("left_click") and Fire_Timer.is_stopped():
+			Shotgun_Fire()
 	
 func Action_2():
 	if Busy: return
@@ -94,7 +96,7 @@ func PlayFireSound():
 
 func Reload():
 	Busy = true
-	if Current_Magazine == Data.Ammo_Capacity:
+	if Current_Magazine == Data.Magazine_Max:
 		Busy = false
 		return
 	print("reloading!")
@@ -105,7 +107,7 @@ func Reload():
 
 func replenish_ammo():
 	print("reload finished!")
-	Current_Magazine = Data.Ammo_Capacity
+	Current_Magazine = Data.Magazine_Max
 
 func Instance_Bullet():
 	var instance = Bullet_Scene.instantiate()
@@ -113,3 +115,19 @@ func Instance_Bullet():
 	instance.transform.basis = Raycaster.global_transform.basis
 	Manager.get_tree().get_root().add_child(instance)
 	#Manager.get_parent().get_parent().add_child(instance)
+
+func Shotgun_Fire():
+	if Current_Magazine > 0:
+		var cur_rot = Raycaster.rotation
+		Animator.play("Fire")
+		PlayFireSound()
+		Current_Magazine -= 1
+		print(Current_Magazine)
+		var angle = Data.Shotgun_Spread
+		for pellet in 8:
+			var spread : Vector2 = Vector2(randi_range(-angle,angle),randi_range(-angle,angle))
+			Raycaster.rotate_x(deg_to_rad(spread.x))
+			Raycaster.rotate_y(deg_to_rad(spread.y))
+			Raycaster.force_raycast_update()
+			Instance_Bullet()
+		Raycaster.rotation = cur_rot

@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cwpidch8yt1mg"]
+
+[ext_resource type="ArrayMesh" uid="uid://hcrg8h0b64rb" path="res://Data/Assets/Weapon models/Slug_Round.tres" id="1_gfjxk"]
+
+[node name="ShotgunSlug" type="Node3D"]
+
+[node name="ShotgunSlug2" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_gfjxk")
+skeleton = NodePath("")

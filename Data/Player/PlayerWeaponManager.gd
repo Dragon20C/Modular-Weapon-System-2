@@ -20,8 +20,10 @@ func _ready():
 
 func setup():
 	var AK47 = GunInterface.new(Object_Data.get("AK47"),self)
+	var Remington = GunInterface.new(Object_Data.get("Remington"),self)
 	
 	System.Add_Weapon(AK47)
+	System.Add_Weapon(Remington)
 
 
 # Input should be handled outside of the system since functions like phyisc/process

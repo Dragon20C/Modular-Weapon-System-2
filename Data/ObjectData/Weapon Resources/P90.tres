@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="RifleItem" load_steps=4 format=3 uid="uid://byw51rsnui55h"]
+[gd_resource type="Resource" script_class="GunObject" load_steps=4 format=3 uid="uid://byw51rsnui55h"]
 
 [ext_resource type="Script" path="res://Data/System/Weapon System/Interfaces + Data/GunData.gd" id="1_xdw3y"]
 [ext_resource type="AudioStream" uid="uid://kioifdji2j28" path="res://Data/Assets/Audio/Gun Sounds/9mm Single.wav" id="1_xib3i"]
@@ -6,9 +6,9 @@
 
 [resource]
 script = ExtResource("1_xdw3y")
-action_type = 1
-Ammo_Capacity = 50
-Magazine_Max = 100
+action_type = "Automatic"
+Ammo_Capacity = 100
+Magazine_Max = 50
 RPM = 800.0
 Reload_Speed = 1.0
 Name = "P90"

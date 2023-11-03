@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dgmyh7wn4vr5s"]
+[gd_scene load_steps=19 format=3 uid="uid://dgmyh7wn4vr5s"]
 
 [ext_resource type="Script" path="res://Data/Player/player.gd" id="1_i23ep"]
 [ext_resource type="Script" path="res://Data/System/MotionSystem/Motion.gd" id="2_la1cq"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://Data/System/InteractionSystem/InteractionManager.gd" id="6_2u70x"]
 [ext_resource type="Script" path="res://Data/Player/PlayerWeaponManager.gd" id="8_ab0e1"]
 [ext_resource type="Resource" uid="uid://dhw814vpbfuw1" path="res://Data/ObjectData/Weapon Resources/AK47.tres" id="9_p1p4r"]
+[ext_resource type="Resource" uid="uid://lfyl0a1siq2b" path="res://Data/ObjectData/Weapon Resources/Remington.tres" id="10_atsgn"]
 [ext_resource type="PackedScene" uid="uid://bbyyjap0bb5ji" path="res://Data/UI/ui.tscn" id="11_lf5ri"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_0b3bm"]
@@ -211,5 +212,6 @@ View_Node = NodePath("../Head/CameraSocket/Camera3D/Offset/ViewBob/View")
 View_Animator = NodePath("../Head/CameraSocket/Camera3D/Animator")
 Audio_Emitter = NodePath("../Head/CameraSocket/Camera3D/WeaponAudioPlayer")
 Object_Data = {
-"AK47": ExtResource("9_p1p4r")
+"AK47": ExtResource("9_p1p4r"),
+"Remington": ExtResource("10_atsgn")
 }

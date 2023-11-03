@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="RifleItem" load_steps=4 format=3 uid="uid://vlt2tr740t10"]
+[gd_resource type="Resource" script_class="GunObject" load_steps=4 format=3 uid="uid://vlt2tr740t10"]
 
 [ext_resource type="Script" path="res://Data/System/Weapon System/Interfaces + Data/GunData.gd" id="1_plf8h"]
 [ext_resource type="AudioStream" uid="uid://kioifdji2j28" path="res://Data/Assets/Audio/Gun Sounds/9mm Single.wav" id="1_yvj4g"]
@@ -6,9 +6,9 @@
 
 [resource]
 script = ExtResource("1_plf8h")
-action_type = 2
-Ammo_Capacity = 12
-Magazine_Max = 26
+action_type = "Semi-automatic"
+Ammo_Capacity = 26
+Magazine_Max = 12
 RPM = 600.0
 Reload_Speed = 1.0
 Name = "1911"
