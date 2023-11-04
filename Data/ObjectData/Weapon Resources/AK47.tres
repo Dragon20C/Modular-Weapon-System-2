@@ -7,6 +7,7 @@
 [resource]
 script = ExtResource("3_5vsbw")
 action_type = "Automatic"
+Shotgun_Spread = 0.0
 Ammo_Capacity = 100
 Magazine_Max = 30
 RPM = 600.0

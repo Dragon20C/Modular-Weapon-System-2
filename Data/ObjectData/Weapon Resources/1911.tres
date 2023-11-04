@@ -7,6 +7,7 @@
 [resource]
 script = ExtResource("1_plf8h")
 action_type = "Semi-automatic"
+Shotgun_Spread = 0.0
 Ammo_Capacity = 26
 Magazine_Max = 12
 RPM = 600.0

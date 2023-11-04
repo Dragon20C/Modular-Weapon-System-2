@@ -23,6 +23,12 @@ var stepped : bool = false
 var effect_speed : float = 1.2
 var effect_vertical : float = 0.02
 var effect_hoizontal : float = 0.01
+@export_group("View bobbing Halo style")
+@export var enable_halo_bob : bool = false
+@export var halo_speed : float = 1.2
+@export var halo_vertical : float = 0.02
+@export var halo_horizontal : float = 0.01
+
 
 var time : float = 0.0
 
@@ -32,13 +38,26 @@ func _physics_process(delta):
 		if Player.velocity.length() > 0 and Player.is_on_floor():
 			time += delta * Player.velocity.length()
 			Camera.transform.origin = Camera.transform.origin.lerp(Motion(),15 * delta)
-			ViewModel.transform.origin = ViewModel.transform.origin.lerp(ViewMotion(),15 * delta)
+			ViewModel.transform.origin = ViewModel.transform.origin.lerp(Choose_Type(),15 * delta)
 			if enable_stab:
 				Camera.look_at(Marker.global_position)
 		else:
 			RestartPosition(delta)
 		
+func Choose_Type():
+	if enable_halo_bob:
+		return HaloViewMotion()
+	else:
+		return ViewMotion()
+
+func HaloViewMotion() -> Vector3:
+	var pos = Vector3.ZERO
+	pos.y = -abs(sin(time * halo_speed) * halo_vertical)
+	pos.x = sin(time * halo_speed) * halo_horizontal
 	
+	
+	return pos
+
 func ViewMotion() -> Vector3:
 	var Pos = Vector3.ZERO
 	Pos.y = -abs(sin(time * effect_speed) * effect_vertical)
@@ -69,7 +88,7 @@ func CanPlayFootStep(y_value : float):
 	if y_value < 0 and !stepped:
 		PlayFootStepSound()
 		stepped = true
-	elif y_value >0 and stepped:
+	elif y_value > 0 and stepped:
 		stepped = false
 
 func PlayFootStepSound():

@@ -27,11 +27,11 @@ func start():
 		State = States.Disabled
 
 func SwitchInput(event):
-	if event.is_action_pressed("scroll_up") and State == States.Running:
+	if event.is_action_pressed("scroll_up") and !Current_Item.Busy:
 		Current_Index = min(Current_Index+1,Weapons.size()-1)
 		Switch_Item(Weapons[Current_Index])
 
-	elif event.is_action_pressed("scroll_down") and State == States.Running:
+	elif event.is_action_pressed("scroll_down") and !Current_Item.Busy:
 		Current_Index = max(Current_Index-1,0)
 		Switch_Item(Weapons[Current_Index])
 

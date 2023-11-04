@@ -141,6 +141,7 @@ _data = {
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("Head", "CameraSocket")]
 script = ExtResource("1_i23ep")
+sensitivity = 0.001
 Head = NodePath("Head")
 CameraSocket = NodePath("Head/CameraSocket")
 
@@ -185,33 +186,36 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_vkl1l")
 
-[node name="MotionNode" type="Node" parent="." node_paths=PackedStringArray("Camera", "Marker", "Player", "feet_audio_player", "ViewModel")]
-script = ExtResource("2_la1cq")
-Camera = NodePath("../Head/CameraSocket/Camera3D")
-Marker = NodePath("../Head/CameraSocket/Marker3D")
-Player = NodePath("..")
-feet_audio_player = NodePath("../FeetAudioEmitter")
-footstep_sounds = Array[AudioStreamWAV]([ExtResource("3_72fb8"), ExtResource("4_ra888"), ExtResource("5_y5t60")])
-ViewModel = NodePath("../Head/CameraSocket/Camera3D/Offset/ViewBob")
-
 [node name="FeetAudioEmitter" type="AudioStreamPlayer3D" parent="."]
 
 [node name="WeaponTimer" type="Timer" parent="."]
 one_shot = true
 
-[node name="InteractionManager" type="Node" parent="." node_paths=PackedStringArray("Raycast")]
-script = ExtResource("6_2u70x")
-Raycast = NodePath("../Head/CameraSocket/Camera3D/Raycaster")
-
 [node name="UI" parent="." instance=ExtResource("11_lf5ri")]
 
-[node name="PlayerWeaponManager" type="Node" parent="." node_paths=PackedStringArray("Weapon_Timer", "View_Node", "View_Animator", "Audio_Emitter")]
+[node name="Systems" type="Node" parent="."]
+
+[node name="PlayerWeaponManager" type="Node" parent="Systems" node_paths=PackedStringArray("Weapon_Timer", "View_Node", "View_Animator", "Audio_Emitter")]
 script = ExtResource("8_ab0e1")
-Weapon_Timer = NodePath("../WeaponTimer")
-View_Node = NodePath("../Head/CameraSocket/Camera3D/Offset/ViewBob/View")
-View_Animator = NodePath("../Head/CameraSocket/Camera3D/Animator")
-Audio_Emitter = NodePath("../Head/CameraSocket/Camera3D/WeaponAudioPlayer")
+Weapon_Timer = NodePath("../../WeaponTimer")
+View_Node = NodePath("../../Head/CameraSocket/Camera3D/Offset/ViewBob/View")
+View_Animator = NodePath("../../Head/CameraSocket/Camera3D/Animator")
+Audio_Emitter = NodePath("../../Head/CameraSocket/Camera3D/WeaponAudioPlayer")
 Object_Data = {
 "AK47": ExtResource("9_p1p4r"),
 "Remington": ExtResource("10_atsgn")
 }
+
+[node name="InteractionManager" type="Node" parent="Systems" node_paths=PackedStringArray("Raycast")]
+script = ExtResource("6_2u70x")
+Raycast = NodePath("../../Head/CameraSocket/Camera3D/Raycaster")
+
+[node name="MotionNode" type="Node" parent="Systems" node_paths=PackedStringArray("Camera", "Marker", "Player", "feet_audio_player", "ViewModel")]
+script = ExtResource("2_la1cq")
+Camera = NodePath("../../Head/CameraSocket/Camera3D")
+Marker = NodePath("../../Head/CameraSocket/Marker3D")
+Player = NodePath("../..")
+feet_audio_player = NodePath("../../FeetAudioEmitter")
+footstep_sounds = Array[AudioStreamWAV]([ExtResource("3_72fb8"), ExtResource("4_ra888"), ExtResource("5_y5t60")])
+ViewModel = NodePath("../../Head/CameraSocket/Camera3D/Offset/ViewBob")
+enable_halo_bob = true
